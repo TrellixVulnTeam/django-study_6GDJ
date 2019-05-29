@@ -2,8 +2,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>typeidea博客系统</title>
 </head>
-<body>
+<>
+    <dev>顶部分类:
+        {% for cate in navs %}
+            <a href="/category/{{ cate.id }}/">{{ cate.name }}</a>
+        {% endfor %}
+    </dev>
+    <hr/>
     {% if tag %}
     标签页: {{ tag.name }}
     {% endif %}
@@ -22,6 +29,19 @@
     </li>
     {% endfor %}
     </ul>
+    <hr/>
+    <dev>底部分类：
+        {% for cate in categories %}
+        <a href="/category/{{ cate.id }}/">{{ cate.name }}</a>
+        {% endfor %}
+    </dev>
+
+    <dev>侧边栏展示：
+        {% for sidebar in sidebars %}
+        <h4>{{ sidebar.title }}</h4>
+        {{ sidebar.content }}
+        {% endfor %}
+    </dev>
 </body>
 </html>
 
