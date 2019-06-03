@@ -2,6 +2,7 @@ from django.shortcuts import render
 #from django.http import HttpResponse
 from blog.models import Post,Tag,Category
 from config.models import SideBar
+from django.views.generic import DetailView
 
 # Create your views here.
 def post_list(request,category_id=None,tag_id=None):
@@ -36,3 +37,7 @@ def post_detail(request,post_id=None):
         post = None
     #return HttpResponse('detail')
     return render(request,'blog/detail.html',context={'post': post,'sidebars': SideBar.get_all()})
+
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/detail.html'

@@ -72,6 +72,12 @@ class Post(models.Model):
     tag = models.ManyToManyField(Tag,verbose_name="标签")
     owner = models.ForeignKey(User,verbose_name="作者",on_delete=models.CASCADE)
     create_time = models.DateTimeField(auto_now_add=True,verbose_name="创建时间")
+    pv = models.PositiveIntegerField(default=1)
+    uv = models.PositiveIntegerField(default=1)
+
+    @classmethod
+    def hot_posts(cls):
+        return cls.objects.filter(status=cls.STATUS_NORMAL).order_by('-pv')
 
     @staticmethod
     def get_by_tag(tag_id):
