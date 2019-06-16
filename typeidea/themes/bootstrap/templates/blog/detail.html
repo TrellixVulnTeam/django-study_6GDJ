@@ -1,0 +1,35 @@
+{#{% extends  "./base.html" %}#}
+{#{% block title  %} {{ post.title }} {% endblock %}#}
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="UTF-8">
+     <title>{{ post.title }}</title>
+    <meta name="viewpoint" content="width=device-width,initial-scale=1,
+       shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.css">
+    <style>
+    .post {
+        margin-bottom: 5px;   //配置每个post卡片下面的间隔
+    }
+    </style>
+ </head>
+{#{% block main %}#}
+    {% if post %}
+    <div class="jumbotron">
+        <h4 class="display-4">{{ post.title }}</h4>
+    </div>
+    <div class="card post">
+        <div class="card-body">
+        <span class="card-link">作者:<a href="#">{{ post.owner.username }}</a></span>
+        <span class="card-link">分类:<a href="#">{{ post.category.name }}</a></span>
+        <hr/>
+        <p class="card-text">{{ post.content  }}</p>
+        </div>
+    </div>
+    {% endif %}
+    <div class="container-fluid power">
+            <h3 class="text-muted">余生很贵  请别浪费</h3>
+        </div>
+</html>
+{#{% endblock %}#}
