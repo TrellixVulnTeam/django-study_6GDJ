@@ -14,7 +14,8 @@
     }
     </style>
  </head>
-{#{% block main %}#}
+
+{% block main %}
     {% if post %}
     <div class="jumbotron">
         <h4 class="display-4">{{ post.title }}</h4>
@@ -31,5 +32,27 @@
     <div class="container-fluid power">
             <h3 class="text-muted">余生很贵  请别浪费</h3>
         </div>
+
+    <hr/>
+    <div class="comment">
+            <form class="form-group" action="/comment/" method="POST">
+                {% csrf_token %}
+                <input name="target" type="hidden" value="{{ request.path }}"/>
+                {{ comment_form }}
+                <input type="submit" value="写好了！"/>
+            </form>
+
+    <!-- 评论列表 -->
+    <ul class="list-group">
+        {% for comment in comment_list %}
+        <li class="list-group-item">
+            <div class="nickname">
+                <a href="{{ comment.website }}">{{ comment.nickname }}</a>
+                <span>{{ comment.created_time }}</span>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    </div>
 </html>
-{#{% endblock %}#}
+{% endblock %}
