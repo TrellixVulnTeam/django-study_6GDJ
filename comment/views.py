@@ -6,7 +6,7 @@ from comment.forms import CommentForm
 # Create your views here.
 
 class CommentView(TemplateView):
-    http_method_names = ['get']
+    http_method_names = ['post']
     template_name = 'comment/result.html'
 
     def post(self,request,*args,**kwargs):
