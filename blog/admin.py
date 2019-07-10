@@ -19,7 +19,7 @@ class PostInline(admin.TabularInline):   #可选择继承自admin.StackedInline�
 class CategoryAdmin(BaseOwnerAdmin):
     inlines = [PostInline,]
     list_display = ('name','status','is_nav','create_time','post_count') #查询展示的字段
-    fields = ('name','status','is_nav','owner')
+    fields = ('name','status','is_nav')
     #这部分代码使用了继承了BaseOwnerAdmin这个基类。
     # def save_model(self, request, obj, form, change):
     #     obj.owner = request.user
