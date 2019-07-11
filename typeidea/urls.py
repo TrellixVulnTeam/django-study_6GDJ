@@ -16,14 +16,17 @@ Including another URLconf
 from django.contrib import admin
 #from django.urls import path
 from django.conf.urls import url
-from typeidea.custom_site import custom_site
+from django.contrib.sitemaps import views as sitemap_views
 
+from typeidea.custom_site import custom_site
 from blog.views import  (IndexView,CategoryView,TagView,
                           PostDetailView,SearchView,AuthorView
                          )
 from config.views import LinkListView
 from typeidea.custom_site import custom_site
 from comment.views import CommentView
+from blog.rss import LatestPostFeed
+from blog.sitemap import PostSitemap
 #from config.views import links
 
 urlpatterns = [
@@ -38,4 +41,6 @@ urlpatterns = [
     url(r'^super_admin/', admin.site.urls,name='super-admin'),
     url(r'admin/',custom_site.urls,name='admin'),
     url(r'^comment/$',CommentView.as_view(),name='comment'),
+    url(r'^rss|feed/',LatestPostFeed(),name='rss'),
+    url(r'^sitemap\.xml$',sitemap_views.sitemap,{'sitemap':{'posts': PostSitemap}}),
 ]
