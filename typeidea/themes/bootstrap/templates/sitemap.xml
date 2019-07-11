@@ -10,7 +10,7 @@
         {% if url.changefreq %}<changefreq>{{ url.changefreq }}</changefreq>{% endif %}
         {% if url.priority %}<priority>{{ url.priority }}</priority>{% endif %}
          <news:news>
-             {%  if url.item.created_time %}<news:publication_date>{{ url.item.create _time|date:"Y-m-d" }}
+             {%  if url.item.created_time %}<news:publication_date>{{ url.item.create_time|date:"Y-m-d" }}
          </news:publication_date>{% endif %}
              {% if url.item.tags %}<news:keywords>{{ url.item.tags }}</news:keywords>{% endif %}
          </news:news>
